@@ -1,5 +1,5 @@
 # Use the official Golang as a build stage
-FROM golang:1.23
+FROM golang:alpine
 
 # Set the Current Working Directory inside the container
 WORKDIR /app
@@ -15,6 +15,10 @@ RUN go mod download
 
 # Copy the source code into the container
 COPY . .
+
+
+#navigate to cmd directory
+WORKDIR /app/cmd
 
 # Build the Go app
 RUN go build -v -o main .
