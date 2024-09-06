@@ -6,12 +6,12 @@ services:
     container_name: mysql_db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: ${{env.MYSQL_ROOT_PASSWORD}}
-      MYSQL_DATABASE: ${{env.MYSQL_DATABASE}}
-      MYSQL_USER: ${{env.MYSQL_USER}}
-      MYSQL_PASSWORD: ${{env.MYSQL_PASSWORD}}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
     ports:
-      - "${{env.DB_PORT}}:${{env.DB_PORT}}"
+      - "${env.DB_PORT}:${env.DB_PORT}"
     volumes:
       - mysql-data:/var/lib/mysql
 
@@ -22,11 +22,11 @@ services:
     ports:
       - "8080:8080"
     environment:
-      DATABASE_HOST: mysql
-      DATABASE_PORT: ${{env.DB_PORT}}
-      DATABASE_USER: ${{env.MYSQL_USER}}
-      DATABASE_PASSWORD: ${{env.MYSQL_PASSWORD}}
-      DATABASE_NAME: ${{env.MYSQL_DATABASE}}
+      - DATABASE_HOST: mysql
+      - DATABASE_PORT=${DB_PORT}
+      - DATABASE_USER=${MYSQL_USER}
+      - DATABASE_PASSWORD=${MYSQL_PASSWORD}
+      - DATABASE_NAME=${MYSQL_DATABASE}
     depends_on:
       - mysql
 
