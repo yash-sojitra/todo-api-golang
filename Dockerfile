@@ -1,5 +1,5 @@
-# Use the official Golang Alpine image as a build stage
-FROM golang:1.20-alpine AS builder
+# Use the official Golang as a build stage
+FROM golang:1.23
 
 # Set the Current Working Directory inside the container
 WORKDIR /app
