@@ -7,6 +7,9 @@ WORKDIR /app
 # Copy go mod and sum files
 COPY go.mod go.sum ./
 
+# clear up any unused dependecies
+RUN go mod tidy
+
 # Download all dependencies. Dependencies will be cached if the go.mod and go.sum files are not changed
 RUN go mod download
 
@@ -14,7 +17,7 @@ RUN go mod download
 COPY . .
 
 # Build the Go app
-RUN go build -o main .
+RUN go build -v -o main .
 
 # Use the minimal Alpine image for the final stage
 FROM alpine:latest
