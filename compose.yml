@@ -8,7 +8,6 @@ services:
       - POSTGRES_PASSWORD=${DB_ROOT_PASSWORD}
       # - POSTGRES_DB=todo
       - POSTGRES_DB=${DB_NAME}
-    command: postgres -c 'shared_buffers=256MB' -c 'max_connections=200'
     ports:
       - 5432:5432
     volumes:

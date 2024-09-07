@@ -6,6 +6,7 @@ import (
 
 	"github.com/gorilla/mux"
 	"github.com/yash-sojitra/todo/api/handlers"
+	"github.com/yash-sojitra/todo/api/middleware"
 	"github.com/yash-sojitra/todo/repository"
 	"github.com/yash-sojitra/todo/services"
 	"gorm.io/gorm"
@@ -25,6 +26,7 @@ func NewAPIServer(addr string, db *gorm.DB) *APIServer {
 
 func (s *APIServer) Run() error {
 	router := mux.NewRouter()
+	router.Use(middleware.PathLogger)
 	subRouter := router.PathPrefix("/api/v1").Subrouter()
 
 	taskRepo := repository.NewTaskRepository(s.db)
