@@ -16,7 +16,6 @@ RUN go mod download
 # Copy the source code into the container
 COPY . .
 
-
 #navigate to cmd directory
 WORKDIR /app/cmd
 
