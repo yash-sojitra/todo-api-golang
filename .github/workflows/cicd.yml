@@ -29,7 +29,7 @@ jobs:
           push: true
           tags: |
             yashsojitra/todo-golang:latest
-            yashsojitra/mysql-custom:latest
+            yashsojitra/psql-custom:latest
 
   deploy:
     needs: build
