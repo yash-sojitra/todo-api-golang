@@ -1,19 +1,17 @@
 version: '3.8'
 
-env_file:
-  - .env
 
 services:
   postgres:
     image: postgres:15
     environment:
       - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_PASSWORD=${DB_ROOT_PASSWORD}
       - POSTGRES_DB=${DB_NAME}
     ports:
       - 5432:5432
     volumes:
-    - postgres_data:/var/lib/postgresql/data
+    - postgres-data:/var/lib/postgresql/data
 
   api:
     build: .
@@ -21,12 +19,14 @@ services:
     restart: always
     ports:
       - "8080:8080"
+    env_file:
+      - .env
     environment:
       - PUBLIC_HOST=${PUBLIC_HOST}
       - PORT=${PORT}
       - DB_USER=${DB_USER}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_HOST=mysql
+      - DB_PASSWORD=${DB_ROOT_PASSWORD}
+      - DB_HOST=postgres
       - DB_PORT=${DB_PORT}
       - DB_NAME=${DB_NAME}
     depends_on:
