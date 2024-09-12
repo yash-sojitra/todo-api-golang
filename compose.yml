@@ -14,7 +14,7 @@ services:
     - postgres-data:/var/lib/postgresql/data
 
   api:
-    build: .
+    image: yashsojitra/todo-golang:latest
     container_name: todo-container
     restart: always
     ports:
