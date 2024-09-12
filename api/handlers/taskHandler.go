@@ -35,7 +35,7 @@ func (h *taskHandler) RegisterRoutes(router *mux.Router) {
 
 func (h *taskHandler) Info(w http.ResponseWriter, r *http.Request) {
 
-	JSONResponse := []PathInfo {
+	JSONResponse := []PathInfo{
 		{
 			Path: "GET http://ec2-43-204-97-110.ap-south-1.compute.amazonaws.com/api/v1/hello",
 			Description: "gives hello world as a message in response",
